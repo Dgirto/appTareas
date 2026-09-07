@@ -8,7 +8,6 @@ import java.util.Objects;
  * Firma acordada en el contrato compartido (PLAN_PROYECTO_appTareas, sección 6).
  */
 public class Tarea {
-
     private long id;
     private String titulo;
     private String descripcion;
@@ -19,6 +18,7 @@ public class Tarea {
     private long usuarioId;             // FK real hacia usuarios.id
 
     public Tarea() {
+        this.estado = EstadoTarea.PENDIENTE.getValor();
     }
 
     public Tarea(long id, String titulo, String descripcion, String estado,

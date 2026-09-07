@@ -1,22 +1,27 @@
 package com.example.apptareas.model;
 
 public enum EstadoTarea {
-    PENDIENTE("Pendiente"),
-    EN_PROGRESO("En progreso"),
-    COMPLETADA("Completada");
+    PENDIENTE("pendiente"),
+    EN_PROGRESO("en progreso"),
+    COMPLETADA("completada");
 
-    private final String descripcion;
+    private final String valor;
 
-    EstadoTarea(String descripcion) {
-        this.descripcion = descripcion;
+    EstadoTarea(String valor) {
+        this.valor = valor;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getValor() {
+        return valor;
     }
 
-    @Override
-    public String toString() {
-        return descripcion;
+    public static EstadoTarea desdeString(String texto) {
+        if (texto == null) return PENDIENTE;
+        for (EstadoTarea e : EstadoTarea.values()) {
+            if (e.valor.equalsIgnoreCase(texto)) {
+                return e;
+            }
+        }
+        return PENDIENTE;
     }
 }
