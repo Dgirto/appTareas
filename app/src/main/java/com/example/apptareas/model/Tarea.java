@@ -1,11 +1,11 @@
 package com.example.apptareas.model;
 
+import java.util.Objects;
+
 /**
  * POJO que representa una tarea.
  *
  * Firma acordada en el contrato compartido (PLAN_PROYECTO_appTareas, sección 6).
- * NOTA: si B1 sube su propia versión de esta clase, hay que reconciliar por PR;
- * los campos y tipos deben coincidir exactamente con TareaContract y DatabaseHelper.
  */
 public class Tarea {
 
@@ -107,6 +107,26 @@ public class Tarea {
 
     public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tarea tarea = (Tarea) o;
+        return id == tarea.id &&
+                usuarioId == tarea.usuarioId &&
+                Objects.equals(titulo, tarea.titulo) &&
+                Objects.equals(descripcion, tarea.descripcion) &&
+                Objects.equals(estado, tarea.estado) &&
+                Objects.equals(fechaVencimiento, tarea.fechaVencimiento) &&
+                Objects.equals(fechaCreacion, tarea.fechaCreacion) &&
+                Objects.equals(usuarioAsignado, tarea.usuarioAsignado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titulo, descripcion, estado, fechaVencimiento, fechaCreacion, usuarioAsignado, usuarioId);
     }
 
     @Override
