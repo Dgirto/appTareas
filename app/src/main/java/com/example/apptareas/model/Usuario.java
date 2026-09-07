@@ -1,29 +1,35 @@
 package com.example.apptareas.model;
 
+/**
+ * POJO que representa un usuario.
+ * Firma acordada en el contrato compartido (PLAN_PROYECTO_appTareas, sección 6).
+ * Responsable formal: B3.
+ */
 public class Usuario {
+
     private long id;
     private String nombre;
     private String correo;
-    private String passwordHash;
-    private String proveedor;    // "local" | "google"
-    private String googleId;
-    private String fotoUrl;
-    private String fechaRegistro;
+    private String proveedor;   // "local" | "google"
+    private String fotoUrl;     // puede ser null en cuentas locales
 
     public Usuario() {
-        this.proveedor = "local";
     }
 
-    public Usuario(long id, String nombre, String correo, String passwordHash,
-                   String proveedor, String googleId, String fotoUrl, String fechaRegistro) {
+    public Usuario(long id, String nombre, String correo, String proveedor, String fotoUrl) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        this.passwordHash = passwordHash;
         this.proveedor = proveedor;
-        this.googleId = googleId;
         this.fotoUrl = fotoUrl;
-        this.fechaRegistro = fechaRegistro;
+    }
+
+    /** Constructor de conveniencia para registrar un usuario nuevo (sin id todavía). */
+    public Usuario(String nombre, String correo, String proveedor, String fotoUrl) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.proveedor = proveedor;
+        this.fotoUrl = fotoUrl;
     }
 
     public long getId() {
@@ -50,28 +56,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
     public String getProveedor() {
         return proveedor;
     }
 
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
-    }
-
-    public String getGoogleId() {
-        return googleId;
-    }
-
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
     }
 
     public String getFotoUrl() {
@@ -82,11 +72,13 @@ public class Usuario {
         this.fotoUrl = fotoUrl;
     }
 
-    public String getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(String fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", proveedor='" + proveedor + '\'' +
+                '}';
     }
 }
