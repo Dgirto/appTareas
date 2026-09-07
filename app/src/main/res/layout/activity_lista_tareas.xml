@@ -1,19 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blanco"
+    android:fitsSystemWindows="true"
     tools:context=".ui.ListaTareasActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="More Fonts..."
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_volver"
+        android:src="@drawable/ic_volver"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnVista"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/filtro_todas"
+        android:src="@drawable/ic_vista_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnVolver"
+        app:layout_constraintBottom_toBottomOf="@id/btnVolver" />
+
+    <ImageButton
+        android:id="@+id/btnFiltro"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/filtro_todas"
+        android:src="@drawable/ic_filtro"
+        app:layout_constraintEnd_toStartOf="@id/btnVista"
+        app:layout_constraintTop_toTopOf="@id/btnVolver"
+        app:layout_constraintBottom_toBottomOf="@id/btnVolver" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/titulo_lista"
+        android:textColor="@color/tinta"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnVolver" />
+
+    <LinearLayout
+        android:id="@+id/contenedorBuscador"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_buscador"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="@string/buscar_hint"
+            android:src="@drawable/ic_buscar" />
+
+        <EditText
+            android:id="@+id/etBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="14dp"
+            android:background="@null"
+            android:hint="@string/buscar_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="@color/tinta"
+            android:textColorHint="@color/gris_placeholder"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/scrollChips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contenedorBuscador">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodas"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:checked="true"
+                android:text="@string/filtro_todas"
+                android:textSize="15sp"
+                app:chipBackgroundColor="@color/chip_fondo"
+                app:chipStrokeColor="@color/chip_borde"
+                app:chipStrokeWidth="1.5dp"
+                android:textColor="@color/chip_texto" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPendientes"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:text="@string/filtro_pendientes"
+                android:textSize="15sp"
+                app:chipBackgroundColor="@color/chip_fondo"
+                app:chipStrokeColor="@color/chip_borde"
+                app:chipStrokeWidth="1.5dp"
+                android:textColor="@color/chip_texto" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipProgreso"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:text="@string/filtro_progreso"
+                android:textSize="15sp"
+                app:chipBackgroundColor="@color/chip_fondo"
+                app:chipStrokeColor="@color/chip_borde"
+                app:chipStrokeWidth="1.5dp"
+                android:textColor="@color/chip_texto" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCompletadas"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:text="@string/filtro_completadas"
+                android:textSize="15sp"
+                app:chipBackgroundColor="@color/chip_fondo"
+                app:chipStrokeColor="@color/chip_borde"
+                app:chipStrokeWidth="1.5dp"
+                android:textColor="@color/chip_texto" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTareas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollChips"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_tarea"
+        tools:itemCount="5" />
+
+    <TextView
+        android:id="@+id/tvVacio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text="@string/lista_vacia"
+        android:textColor="@color/gris_texto"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rvTareas"
+        app:layout_constraintBottom_toBottomOf="@id/rvTareas"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabNueva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/nueva_tarea"
+        android:textColor="@color/blanco"
+        app:backgroundTint="@color/primario"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/ic_mas"
+        app:iconTint="@color/blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
