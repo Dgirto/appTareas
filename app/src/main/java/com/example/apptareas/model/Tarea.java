@@ -1,30 +1,30 @@
 package com.example.apptareas.model;
 
-import java.util.Objects;
-
 public class Tarea {
-
     private long id;
     private String titulo;
     private String descripcion;
-    private String fechaCreacion;
+    private String estado;          // "pendiente" | "en progreso" | "completada"
     private String fechaVencimiento;
-    private EstadoTarea estado;
+    private String fechaCreacion;
+    private String usuarioAsignado; // Campo de texto libre del enunciado
+    private long usuarioId;        // Relación con el usuario que la creó
 
     public Tarea() {
+        this.estado = EstadoTarea.PENDIENTE.getValor();
     }
 
-    public Tarea(long id, String titulo, String descripcion, String fechaCreacion, String fechaVencimiento, EstadoTarea estado) {
+    public Tarea(long id, String titulo, String descripcion, String estado,
+                 String fechaVencimiento, String fechaCreacion,
+                 String usuarioAsignado, long usuarioId) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaVencimiento = fechaVencimiento;
         this.estado = estado;
-    }
-
-    public Tarea(String titulo, String descripcion, String fechaCreacion, String fechaVencimiento, EstadoTarea estado) {
-        this(0, titulo, descripcion, fechaCreacion, fechaVencimiento, estado);
+        this.fechaVencimiento = fechaVencimiento;
+        this.fechaCreacion = fechaCreacion;
+        this.usuarioAsignado = usuarioAsignado;
+        this.usuarioId = usuarioId;
     }
 
     public long getId() {
@@ -51,12 +51,12 @@ public class Tarea {
         this.descripcion = descripcion;
     }
 
-    public String getFechaCreacion() {
-        return fechaCreacion;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getFechaVencimiento() {
@@ -67,41 +67,27 @@ public class Tarea {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public EstadoTarea getEstado() {
-        return estado;
+    public String getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setEstado(EstadoTarea estado) {
-        this.estado = estado;
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tarea tarea = (Tarea) o;
-        return id == tarea.id &&
-                Objects.equals(titulo, tarea.titulo) &&
-                Objects.equals(descripcion, tarea.descripcion) &&
-                Objects.equals(fechaCreacion, tarea.fechaCreacion) &&
-                Objects.equals(fechaVencimiento, tarea.fechaVencimiento) &&
-                estado == tarea.estado;
+    public String getUsuarioAsignado() {
+        return usuarioAsignado;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, titulo, descripcion, fechaCreacion, fechaVencimiento, estado);
+    public void setUsuarioAsignado(String usuarioAsignado) {
+        this.usuarioAsignado = usuarioAsignado;
     }
 
-    @Override
-    public String toString() {
-        return "Tarea{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", fechaCreacion='" + fechaCreacion + '\'' +
-                ", fechaVencimiento='" + fechaVencimiento + '\'' +
-                ", estado=" + estado +
-                '}';
+    public long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }
