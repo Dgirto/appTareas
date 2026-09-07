@@ -1,3 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">appTareas</string>
+
+    <string name="titulo_lista">Gestionar tareas</string>
+    <string name="buscar_hint">Buscar tarea por nombre</string>
+    <string name="filtro_todas">Todas</string>
+    <string name="filtro_pendientes">Pendientes</string>
+    <string name="filtro_progreso">En progreso</string>
+    <string name="filtro_completadas">Completadas</string>
+    <string name="nueva_tarea">Nueva tarea</string>
+    <string name="lista_vacia">Aún no tienes tareas.\nPulsa «Nueva tarea» para crear la primera.</string>
+
+    <string name="label_titulo">TÍTULO DE LA TAREA *</string>
+    <string name="label_descripcion">DESCRIPCIÓN</string>
+    <string name="label_estado">ESTADO *</string>
+    <string name="label_vencimiento">FECHA DE VENCIMIENTO</string>
+    <string name="label_asignado">USUARIO ASIGNADO</string>
+    <string name="hint_titulo">Ej. Revisar documentos del proyecto</string>
+    <string name="hint_descripcion">Detalles de la tarea</string>
+    <string name="hint_fecha">dd/mm/aaaa</string>
+    <string name="hint_asignado">Nombre de la persona</string>
+    <string name="fecha_creacion_auto">Fecha de creación: %1$s — la asigna el sistema</string>
+    <string name="guardar_tarea">Guardar tarea</string>
+    <string name="guardar">Guardar</string>
+
+    <string name="seccion_descripcion">DESCRIPCIÓN</string>
+    <string name="campo_estado">Estado</string>
+    <string name="campo_vencimiento">Fecha de vencimiento</string>
+    <string name="campo_creacion">Fecha de creación</string>
+    <string name="campo_asignado">Usuario asignado</string>
+    <string name="marcar_completada">Marcar como completada</string>
+    <string name="marcar_pendiente">Marcar como pendiente</string>
+
+    <string name="eliminar_titulo">¿Eliminar esta tarea?</string>
+    <string name="eliminar_mensaje">«%1$s» se eliminará de forma permanente de la base de datos. Esta acción no se puede deshacer.</string>
+    <string name="eliminar_confirmar">Sí, eliminar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="login_titulo">Bienvenido de nuevo</string>
+    <string name="login_subtitulo">Inicia sesión para gestionar tus tareas.</string>
+    <string name="label_usuario">Usuario</string>
+    <string name="label_password">Contraseña</string>
+    <string name="recordarme">Recordarme</string>
+    <string name="olvide_password">¿Olvidaste tu contraseña?</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="continuar_google">Continuar con Google</string>
+    <string name="continuar_invitado">Continuar como invitado</string>
+    <string name="sin_cuenta">¿No tienes cuenta?</string>
+    <string name="registrate">Regístrate</string>
+    <string name="separador_o">o</string>
+
+    <string name="desc_icono">Icono</string>
+    <string name="desc_volver">Volver</string>
+    <string name="desc_editar">Editar tarea</string>
+    <string name="desc_eliminar">Eliminar tarea</string>
+    <string name="desc_cerrar">Cerrar</string>
 </resources>
