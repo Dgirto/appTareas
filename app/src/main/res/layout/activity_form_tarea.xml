@@ -209,7 +209,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="9dp"
                 android:background="@drawable/bg_campo"
-                android:drawableEnd="@drawable/ic_usuario"
+                android:drawableEnd="@drawable/ic_chevron_abajo"
                 android:hint="@string/hint_asignado"
                 android:inputType="textPersonName"
                 android:maxLines="1"
