@@ -1,9 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.AppTareas" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+    <style name="Theme.AppTareas" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primario</item>
+        <item name="colorSecondary">@color/acento</item>
+        <item name="android:windowBackground">@color/blanco</item>
+        <item name="android:statusBarColor">@color/blanco</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
-    <style name="Theme.AppTareas" parent="Base.Theme.AppTareas" />
+        <!--
+            Inter para toda la app. Es una fuente descargable (Google Fonts via
+            Play Services): si el dispositivo no la puede resolver, Android cae
+            solo a la fuente del sistema y el diseno se sostiene igual.
+        -->
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="fontFamily">@font/inter</item>
+    </style>
 </resources>

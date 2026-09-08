@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="blanco">#FFFFFFFF</color>
+    <color name="tinta">#FF0A0A0A</color>
+    <color name="tinta_suave">#FF3A3A44</color>
+    <color name="gris_texto">#FF6B6B78</color>
+    <color name="gris_placeholder">#FF9A9AA6</color>
+
+    <color name="primario">#FF1B1B2F</color>
+    <color name="acento">#FF5B4BC4</color>
+    <color name="peligro">#FFD8365D</color>
+    <color name="peligro_suave">#FFFDE8ED</color>
+
+    <color name="campo_fondo">#FFF7F6FC</color>
+    <color name="campo_borde">#FFE6E4F2</color>
+    <color name="buscador_fondo">#FFEDEAFA</color>
+    <color name="chip_borde_solido">#FFE3E3E8</color>
+
+    <color name="estado_pendiente">#FFE8A33D</color>
+    <color name="estado_progreso">#FF3B7DD8</color>
+    <color name="estado_completada">#FF2FA36B</color>
+
+    <color name="tarjeta_amarillo">#FFFCE97F</color>
+    <color name="tarjeta_azul">#FFCBDFF8</color>
+    <color name="tarjeta_menta">#FFCBEFE2</color>
+    <color name="tarjeta_lila">#FFE0D7F9</color>
+    <color name="tarjeta_lima">#FFE0F3AF</color>
+    <color name="tarjeta_rosa">#FFFBDCEA</color>
 </resources>

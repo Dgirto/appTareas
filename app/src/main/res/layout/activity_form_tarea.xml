@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.FormTareaActivity">
+
+    <ImageButton
+        android:id="@+id/btnCerrar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_cerrar"
+        android:src="@drawable/ic_cerrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTituloBarra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nueva_tarea"
+        android:textColor="@color/tinta"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnCerrar"
+        app:layout_constraintBottom_toBottomOf="@id/btnCerrar" />
+
+    <TextView
+        android:id="@+id/btnGuardarBarra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:padding="8dp"
+        android:text="@string/guardar"
+        android:textColor="@color/acento"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnCerrar"
+        app:layout_constraintBottom_toBottomOf="@id/btnCerrar" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCerrar"
+        app:layout_constraintBottom_toTopOf="@id/btnGuardar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_titulo"
+                android:textColor="@color/gris_texto"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_campo"
+                android:hint="@string/hint_titulo"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:textColor="@color/tinta"
+                android:textColorHint="@color/gris_placeholder"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_descripcion"
+                android:textColor="@color/gris_texto"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_campo"
+                android:gravity="top"
+                android:hint="@string/hint_descripcion"
+                android:inputType="textMultiLine|textCapSentences"
+                android:padding="18dp"
+                android:textColor="@color/tinta"
+                android:textColorHint="@color/gris_placeholder"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_estado"
+                android:textColor="@color/gris_texto"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFormEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                app:singleLine="true"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFormPendiente"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:checked="true"
+                    android:text="@string/filtro_pendientes"
+                    android:textColor="@color/chip_texto"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/chip_fondo"
+                    app:chipStrokeColor="@color/chip_borde"
+                    app:chipStrokeWidth="1.5dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFormProgreso"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="@string/filtro_progreso"
+                    android:textColor="@color/chip_texto"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/chip_fondo"
+                    app:chipStrokeColor="@color/chip_borde"
+                    app:chipStrokeWidth="1.5dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFormCompletada"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="@string/filtro_completadas"
+                    android:textColor="@color/chip_texto"
+                    android:textSize="13sp"
+                    app:chipBackgroundColor="@color/chip_fondo"
+                    app:chipStrokeColor="@color/chip_borde"
+                    app:chipStrokeWidth="1.5dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_vencimiento"
+                android:textColor="@color/gris_texto"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etVencimiento"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_campo"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:drawableEnd="@drawable/ic_calendario"
+                android:focusable="false"
+                android:hint="@string/hint_fecha"
+                android:longClickable="false"
+                android:maxLines="1"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:textColor="@color/tinta"
+                android:textColorHint="@color/gris_placeholder"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_asignado"
+                android:textColor="@color/gris_texto"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAsignado"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_campo"
+                android:drawableEnd="@drawable/ic_chevron_abajo"
+                android:hint="@string/hint_asignado"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:textColor="@color/tinta"
+                android:textColorHint="@color/gris_placeholder"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_aviso"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="@string/campo_creacion"
+                    android:src="@drawable/ic_reloj" />
+
+                <TextView
+                    android:id="@+id/tvFechaCreacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/acento"
+                    android:textSize="13sp"
+                    tools:text="Fecha de creación: 02/09/2026 — la asigna el sistema" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btnGuardar"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_boton_primario"
+        android:gravity="center"
+        android:text="@string/guardar_tarea"
+        android:textColor="@color/blanco"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
