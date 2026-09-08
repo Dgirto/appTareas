@@ -23,13 +23,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.RegistroActivity" android:exported="false" />
+        <activity
+            android:name=".ui.RegistroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.ListaTareasActivity" android:exported="false" />
         <activity android:name=".ui.DetalleTareaActivity" android:exported="false" />
         <activity
             android:name=".ui.FormTareaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <!-- Precarga de la fuente descargable Inter (res/values/preloaded_fonts.xml) -->
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
