@@ -55,4 +55,45 @@
     <string name="desc_editar">Editar tarea</string>
     <string name="desc_eliminar">Eliminar tarea</string>
     <string name="desc_cerrar">Cerrar</string>
+
+    <!-- Registro -->
+    <string name="registro_titulo">Crear cuenta</string>
+    <string name="registro_subtitulo">Regístrate para empezar a organizar tus tareas.</string>
+    <string name="label_nombre">Nombre</string>
+    <string name="hint_nombre">Tu nombre completo</string>
+    <string name="hint_correo">correo@ejemplo.com</string>
+    <string name="hint_password">Mínimo 6 caracteres</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="ya_tengo_cuenta">¿Ya tienes cuenta?</string>
+    <string name="inicia_sesion">Inicia sesión</string>
+
+    <!-- Estados en singular (para el detalle y las tarjetas) -->
+    <string name="estado_pendiente_txt">Pendiente</string>
+    <string name="estado_progreso_txt">En progreso</string>
+    <string name="estado_completada_txt">Completada</string>
+
+    <!-- Textos compuestos de la lista y el detalle -->
+    <string name="tarjeta_estado_vence">%1$s  ·  Vence %2$s</string>
+    <string name="tarjeta_asignada">Asignada a %1$s</string>
+    <string name="detalle_vence">Vence el %1$s</string>
+    <string name="detalle_sin_vencimiento">Sin fecha de vencimiento</string>
+    <string name="sin_asignar">Sin asignar</string>
+    <string name="sin_descripcion">Esta tarea no tiene descripción.</string>
+    <string name="editar_tarea">Editar tarea</string>
+
+    <!-- Mensajes -->
+    <string name="msg_tarea_guardada">Tarea guardada</string>
+    <string name="msg_tarea_eliminada">Tarea eliminada</string>
+    <string name="msg_estado_actualizado">Estado actualizado</string>
+    <string name="msg_error_guardar">No se pudo guardar la tarea</string>
+    <string name="msg_credenciales_invalidas">Correo o contraseña incorrectos</string>
+    <string name="msg_campos_obligatorios">Completa todos los campos</string>
+    <string name="msg_password_corta">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="msg_correo_registrado">Ese correo ya está registrado</string>
+    <string name="msg_registro_ok">Cuenta creada. Ya puedes iniciar sesión.</string>
+    <string name="msg_error_registro">No se pudo crear la cuenta</string>
+    <string name="msg_google_pendiente">El inicio de sesión con Google aún no está disponible</string>
+    <string name="msg_recuperar_pendiente">La recuperación de contraseña aún no está disponible</string>
+    <string name="invitado_nombre">Invitado</string>
+    <string name="msg_error_invitado">No se pudo entrar como invitado</string>
 </resources>
