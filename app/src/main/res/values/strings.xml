@@ -87,6 +87,5 @@
     <string name="msg_estado_actualizado">Estado actualizado</string>
     <string name="msg_error_guardar">No se pudo guardar la tarea</string>
     <string name="msg_registro_ok">Cuenta creada. Ya puedes iniciar sesión.</string>
-    <string name="msg_google_pendiente">El inicio de sesión con Google aún no está disponible</string>
     <string name="msg_recuperar_pendiente">La recuperación de contraseña aún no está disponible</string>
 </resources>

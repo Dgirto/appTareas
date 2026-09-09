@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        ID de cliente web (OAuth) del proyecto de Firebase "apptareas-c1795".
+        Es el "serverClientId" que Credential Manager necesita para pedir un
+        token de Google.
+
+        No es un secreto: viaja dentro de cualquier APK publicado y sirve solo
+        para identificar el proyecto. Por eso se versiona, a diferencia de
+        google-services.json, que ademas lleva la API key y esta en .gitignore.
+
+        Se versiona a proposito para que cualquiera del equipo pueda compilar
+        sin necesitar el google-services.json.
+    -->
+    <string name="google_web_client_id" translatable="false">371924802513-60aahq7bmg0682be81iuvahbeldkum73.apps.googleusercontent.com</string>
+</resources>

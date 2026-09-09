@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apptareas.R;
 import com.example.apptareas.auth.AuthManager;
+import com.example.apptareas.auth.GoogleAuthClient;
 import com.example.apptareas.model.Usuario;
 import com.example.apptareas.util.Resultado;
 
@@ -17,6 +18,7 @@ import com.example.apptareas.util.Resultado;
 public class LoginActivity extends AppCompatActivity {
 
     private AuthManager authManager;
+    private GoogleAuthClient googleAuthClient;
 
     private EditText etUsuario;
     private EditText etPassword;
@@ -26,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         authManager = new AuthManager(this);
+        googleAuthClient = new GoogleAuthClient(this);
 
         // Sesion persistente: si ya hay una guardada, se salta el login.
         if (authManager.haySesionActiva()) {
@@ -50,10 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         tvRegistrate.setOnClickListener(v ->
                 startActivity(new Intent(this, RegistroActivity.class)));
 
-        // AuthManager.iniciarSesionConGoogle ya existe, pero quien consigue el
-        // idToken es auth/GoogleAuthClient, que necesita el proyecto de Firebase
-        // y google-services.json (seccion 7 del plan). Hasta entonces, aviso.
-        btnGoogle.setOnClickListener(v -> avisar(getString(R.string.msg_google_pendiente)));
+        btnGoogle.setOnClickListener(v -> iniciarSesionConGoogle());
         tvOlvide.setOnClickListener(v -> avisar(getString(R.string.msg_recuperar_pendiente)));
     }
 
@@ -77,6 +77,18 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             avisar(resultado.getMensaje());
         }
+    }
+
+    private void iniciarSesionConGoogle() {
+        // El selector de cuentas lo pinta el sistema; el resultado vuelve por
+        // callback en el hilo principal, asi que se puede tocar la UI aqui.
+        googleAuthClient.iniciarSesion(this, resultado -> {
+            if (resultado.esExitoso()) {
+                irALista();
+            } else {
+                avisar(resultado.getMensaje());
+            }
+        });
     }
 
     private void irALista() {
