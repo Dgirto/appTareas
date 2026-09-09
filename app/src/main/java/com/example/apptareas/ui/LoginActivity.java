@@ -28,6 +28,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Cuenta de demostracion con tareas de ejemplo. Solo en depuracion y solo
+        // la primera vez; las credenciales estan en el README.
+        DatosDePrueba.sembrarSiHaceFalta(this);
+
         authManager = new AuthManager(this);
         googleAuthClient = new GoogleAuthClient(this);
 
