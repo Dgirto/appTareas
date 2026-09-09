@@ -203,18 +203,26 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <!--
+                Desplegable de verdad: sugiere las personas ya usadas en otras
+                tareas, pero deja escribir cualquier nombre porque el campo
+                usuario_asignado es texto libre (seccion 5 del plan).
+            -->
+            <AutoCompleteTextView
                 android:id="@+id/etAsignado"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="9dp"
                 android:background="@drawable/bg_campo"
+                android:completionThreshold="0"
                 android:drawableEnd="@drawable/ic_chevron_abajo"
                 android:hint="@string/hint_asignado"
+                android:imeOptions="actionDone"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
+                android:popupBackground="@color/blanco"
                 android:textColor="@color/tinta"
                 android:textColorHint="@color/gris_placeholder"
                 android:textSize="16sp" />

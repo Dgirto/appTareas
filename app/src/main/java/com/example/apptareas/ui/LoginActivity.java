@@ -2,6 +2,7 @@ package com.example.apptareas.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
 
         TextView btnIniciar = findViewById(R.id.btnIniciar);
-        TextView btnGoogle = findViewById(R.id.btnGoogle);
+        View btnGoogle = findViewById(R.id.btnGoogle);
         TextView btnInvitado = findViewById(R.id.btnInvitado);
         TextView tvRegistrate = findViewById(R.id.tvRegistrate);
         TextView tvOlvide = findViewById(R.id.tvOlvide);

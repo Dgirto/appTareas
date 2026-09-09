@@ -1,6 +1,8 @@
 package com.example.apptareas.ui;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -13,10 +15,16 @@ import com.example.apptareas.auth.SesionManager;
 import com.example.apptareas.data.TareaContract;
 import com.example.apptareas.data.TareaDao;
 import com.example.apptareas.model.Tarea;
+import com.example.apptareas.model.Usuario;
 import com.example.apptareas.util.FechaUtils;
 import com.example.apptareas.util.Resultado;
 import com.example.apptareas.util.Validaciones;
 import com.google.android.material.chip.ChipGroup;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /** Pantalla 03: crear y editar tarea. */
 public class FormTareaActivity extends AppCompatActivity {
@@ -30,7 +38,7 @@ public class FormTareaActivity extends AppCompatActivity {
     private EditText etTitulo;
     private EditText etDescripcion;
     private EditText etVencimiento;
-    private EditText etAsignado;
+    private AutoCompleteTextView etAsignado;
     private ChipGroup chipGroupFormEstado;
     private TextView tvFechaCreacion;
 
@@ -65,6 +73,8 @@ public class FormTareaActivity extends AppCompatActivity {
         // no el teclado. El picker lo escribe en formato dd/MM/yyyy.
         etVencimiento.setOnClickListener(v -> FechaUtils.mostrarDatePicker(this, etVencimiento));
 
+        prepararSugerenciasDeAsignado();
+
         tareaId = getIntent().getLongExtra(EXTRA_TAREA_ID, 0L);
         if (tareaId > 0) {
             tvTituloBarra.setText(R.string.editar_tarea);
@@ -73,6 +83,43 @@ public class FormTareaActivity extends AppCompatActivity {
             tvFechaCreacion.setText(getString(
                     R.string.fecha_creacion_auto, FechaUtils.isoAUi(FechaUtils.hoyIso())));
         }
+    }
+
+    /**
+     * Llena el desplegable de "Usuario asignado" con las personas que ya
+     * aparecen en otras tareas, mas el nombre del usuario de la sesion.
+     * El campo sigue admitiendo texto libre: solo son sugerencias.
+     */
+    private void prepararSugerenciasDeAsignado() {
+        Set<String> nombres = new LinkedHashSet<>();
+
+        Usuario activo = sesionManager.obtenerUsuarioActivo();
+        if (activo != null && activo.getNombre() != null && !activo.getNombre().trim().isEmpty()) {
+            nombres.add(activo.getNombre().trim());
+        }
+
+        for (Tarea t : tareaDao.listarTodas(sesionManager.usuarioIdActivo())) {
+            String asignado = t.getUsuarioAsignado();
+            if (asignado != null && !asignado.trim().isEmpty()) {
+                nombres.add(asignado.trim());
+            }
+        }
+
+        List<String> sugerencias = new ArrayList<>(nombres);
+        etAsignado.setAdapter(new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, sugerencias));
+
+        if (sugerencias.isEmpty()) {
+            return;
+        }
+
+        // Al tocar el campo se abre la lista, que es lo que promete la flecha.
+        etAsignado.setOnClickListener(v -> etAsignado.showDropDown());
+        etAsignado.setOnFocusChangeListener((v, tieneFoco) -> {
+            if (tieneFoco) {
+                etAsignado.showDropDown();
+            }
+        });
     }
 
     private void cargarTarea() {

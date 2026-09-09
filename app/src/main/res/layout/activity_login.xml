@@ -140,20 +140,31 @@
             android:textColor="@color/gris_placeholder"
             android:textSize="14sp" />
 
-        <TextView
+        <LinearLayout
             android:id="@+id/btnGoogle"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/bg_boton_secundario"
-            android:drawableStart="@drawable/ic_google"
-            android:drawablePadding="12dp"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
-            android:paddingStart="100dp"
-            android:paddingEnd="24dp"
-            android:text="@string/continuar_google"
-            android:textColor="@color/primario"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@string/continuar_google"
+                android:src="@drawable/ic_google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/continuar_google"
+                android:textColor="@color/primario"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/btnInvitado"
