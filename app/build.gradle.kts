@@ -41,6 +41,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.2")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // Inicio de sesion con Google (Credential Manager). Exigen compileSdk 35
+    // y AGP 8.6.0+, que es justo lo que usa el proyecto.
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
