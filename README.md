@@ -122,7 +122,7 @@ Reparto según los commits que hay en el repositorio:
 |---|---|---|
 | Dorian Girón (`Dgirto`) | `ui/` completo: Activities, adapter, layouts, tema, iconos, navegación. Y `auth/` | `feature/giron` |
 | Piero Llamocca (`Piero200314`) | `model/` y `data/`: esquema SQLite, `DatabaseHelper`, `TareaContract`, `TareaDao`, `UsuarioDao` | `feature/piero` (ya integrada) |
-| Mayra Mallqui (`MayraFab`) | `util/`: `Validaciones`, `FechaUtils`, `Resultado`, y sus pruebas unitarias | `feature/pereyra` |
+| Guillermo Pereyra (`SCAREDbelike`) | `util/`: `Validaciones`, `FechaUtils`, `Resultado`, y sus pruebas unitarias | `feature/pereyra` |
 | Matías Meléndez (`Magidark00`) | Modelado de la base de datos y ajuste del toolchain de Gradle | `carlos` |
 | Daniel León (`Weakdlt`) | Autenticación | `feature/leon` — **sin integrar** |
 
