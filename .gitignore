@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Planes y borradores que generan los asistentes de IA: no son parte del proyecto
+.artifacts/
+
+# Worktrees y estado local de Claude Code
+.claude/
