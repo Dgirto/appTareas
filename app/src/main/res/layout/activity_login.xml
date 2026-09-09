@@ -22,7 +22,7 @@
             android:layout_height="76dp"
             android:background="@drawable/bg_boton_primario"
             android:contentDescription="@string/app_name"
-            android:padding="19dp"
+            android:padding="15dp"
             android:src="@drawable/ic_logo" />
 
         <TextView

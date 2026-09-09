@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Logo de la app: lista con marca de verificacion. Va sobre bg_boton_primario, por eso es blanco. -->
+<!--
+    Marca de doit: un anillo a medio completar que termina en un check.
+    Cuenta lo que hace la app: en curso -> hecho.
+
+    Va dentro del cuadrado oscuro (bg_boton_primario) de la pantalla de login,
+    por eso el check es blanco. Sin android:tint a proposito: el anillo tiene
+    que conservar el morado de acento de la paleta.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24"
-    android:tint="@color/blanco">
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
 
+    <!-- Anillo abierto: arranca arriba y gira 300 grados -->
     <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M4,5.5m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M8.5,4.5h12v2h-12z" />
+        android:pathData="M60,14 A46,46 0 1 1 20.2,37"
+        android:strokeColor="@color/acento"
+        android:strokeWidth="9"
+        android:strokeLineCap="round" />
 
+    <!-- Check, holgado dentro del anillo para que no lo roce -->
     <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M4,12m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M8.5,11h12v2h-12z" />
-
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M8.5,17.5h12v2h-12z" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M2.2,18.1l1.3,-1.3l1.4,1.4l2.6,-2.7l1.3,1.4l-3.9,3.9z" />
+        android:pathData="M40,61 L54,75 L80,45"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="12"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 </vector>
