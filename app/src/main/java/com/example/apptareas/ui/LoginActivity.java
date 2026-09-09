@@ -9,18 +9,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apptareas.R;
-import com.example.apptareas.data.UsuarioDao;
+import com.example.apptareas.auth.AuthManager;
 import com.example.apptareas.model.Usuario;
-
-import java.util.UUID;
+import com.example.apptareas.util.Resultado;
 
 /** Pantalla 01: inicio de sesion local, con acceso de invitado. */
 public class LoginActivity extends AppCompatActivity {
 
-    /** Cuenta local de respaldo para el acceso sin credenciales. */
-    private static final String CORREO_INVITADO = "invitado@apptareas.local";
-
-    private UsuarioDao usuarioDao;
+    private AuthManager authManager;
 
     private EditText etUsuario;
     private EditText etPassword;
@@ -29,15 +25,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        authManager = new AuthManager(this);
+
         // Sesion persistente: si ya hay una guardada, se salta el login.
-        if (SesionTemporal.haySesion(this)) {
+        if (authManager.haySesionActiva()) {
             irALista();
             return;
         }
 
         setContentView(R.layout.activity_login);
-
-        usuarioDao = new UsuarioDao(this);
 
         etUsuario = findViewById(R.id.etUsuario);
         etPassword = findViewById(R.id.etPassword);
@@ -49,67 +45,38 @@ public class LoginActivity extends AppCompatActivity {
         TextView tvOlvide = findViewById(R.id.tvOlvide);
 
         btnIniciar.setOnClickListener(v -> iniciarSesion());
-
         btnInvitado.setOnClickListener(v -> entrarComoInvitado());
 
         tvRegistrate.setOnClickListener(v ->
                 startActivity(new Intent(this, RegistroActivity.class)));
 
-        // Google Sign-In es responsabilidad de B3 (auth/GoogleAuthClient) y aun no existe.
+        // AuthManager.iniciarSesionConGoogle ya existe, pero quien consigue el
+        // idToken es auth/GoogleAuthClient, que necesita el proyecto de Firebase
+        // y google-services.json (seccion 7 del plan). Hasta entonces, aviso.
         btnGoogle.setOnClickListener(v -> avisar(getString(R.string.msg_google_pendiente)));
         tvOlvide.setOnClickListener(v -> avisar(getString(R.string.msg_recuperar_pendiente)));
     }
 
     private void iniciarSesion() {
-        String correo = etUsuario.getText().toString().trim();
-        String password = etPassword.getText().toString();
+        Resultado<Usuario> resultado = authManager.iniciarSesion(
+                etUsuario.getText().toString(),
+                etPassword.getText().toString());
 
-        if (correo.isEmpty() || password.isEmpty()) {
-            avisar(getString(R.string.msg_campos_obligatorios));
-            return;
+        if (resultado.esExitoso()) {
+            irALista();
+        } else {
+            avisar(resultado.getMensaje());
         }
-
-        if (!usuarioDao.verificarPassword(correo, password)) {
-            avisar(getString(R.string.msg_credenciales_invalidas));
-            return;
-        }
-
-        Usuario usuario = usuarioDao.buscarPorCorreo(correo);
-        if (usuario == null) {
-            avisar(getString(R.string.msg_credenciales_invalidas));
-            return;
-        }
-
-        // De momento la sesion se guarda siempre, marque o no "Recordarme".
-        // Respetar ese check es cosa de auth/SesionManager (B3), que aun no existe.
-        SesionTemporal.guardar(this, usuario.getId(), usuario.getNombre());
-        irALista();
     }
 
-    /**
-     * Entra sin credenciales. No basta con un id ficticio: tareas.usuario_id es
-     * clave foranea contra usuarios(id) y el esquema activa PRAGMA foreign_keys,
-     * asi que insertar tareas con un id inexistente falla con SQLITE_CONSTRAINT.
-     * Por eso el invitado se respalda en una cuenta local real, creada una sola vez.
-     */
     private void entrarComoInvitado() {
-        Usuario invitado = usuarioDao.buscarPorCorreo(CORREO_INVITADO);
+        Resultado<Usuario> resultado = authManager.entrarComoInvitado();
 
-        if (invitado == null) {
-            Usuario nuevo = new Usuario(
-                    getString(R.string.invitado_nombre), CORREO_INVITADO, "local", null);
-            // Contrasena aleatoria: esta cuenta nunca se usa para iniciar sesion.
-            long id = usuarioDao.registrar(nuevo, UUID.randomUUID().toString());
-            if (id <= 0) {
-                avisar(getString(R.string.msg_error_invitado));
-                return;
-            }
-            SesionTemporal.guardar(this, id, getString(R.string.invitado_nombre));
+        if (resultado.esExitoso()) {
+            irALista();
         } else {
-            SesionTemporal.guardar(this, invitado.getId(), invitado.getNombre());
+            avisar(resultado.getMensaje());
         }
-
-        irALista();
     }
 
     private void irALista() {

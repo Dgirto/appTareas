@@ -9,15 +9,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apptareas.R;
-import com.example.apptareas.data.UsuarioDao;
+import com.example.apptareas.auth.AuthManager;
 import com.example.apptareas.model.Usuario;
+import com.example.apptareas.util.Resultado;
 
-/** Registro de cuenta local. El alta con Google la cubre B3. */
+/** Registro de cuenta local. El alta con Google la resuelve AuthManager. */
 public class RegistroActivity extends AppCompatActivity {
 
-    private static final int LARGO_MINIMO_PASSWORD = 6;
-
-    private UsuarioDao usuarioDao;
+    private AuthManager authManager;
 
     private EditText etNombre;
     private EditText etCorreo;
@@ -28,7 +27,7 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        usuarioDao = new UsuarioDao(this);
+        authManager = new AuthManager(this);
 
         etNombre = findViewById(R.id.etNombre);
         etCorreo = findViewById(R.id.etCorreo);
@@ -44,32 +43,18 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     private void registrar() {
-        String nombre = etNombre.getText().toString().trim();
-        String correo = etCorreo.getText().toString().trim();
-        String password = etPassword.getText().toString();
+        // Las validaciones y el hash de la contrasena viven en auth/ y data/:
+        // aqui solo se recogen los campos y se muestra el resultado.
+        Resultado<Usuario> resultado = authManager.registrar(
+                etNombre.getText().toString(),
+                etCorreo.getText().toString(),
+                etPassword.getText().toString());
 
-        if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-            avisar(getString(R.string.msg_campos_obligatorios));
-            return;
-        }
-
-        if (password.length() < LARGO_MINIMO_PASSWORD) {
-            avisar(getString(R.string.msg_password_corta));
-            return;
-        }
-
-        if (usuarioDao.existeCorreo(correo)) {
-            avisar(getString(R.string.msg_correo_registrado));
-            return;
-        }
-
-        // El hash de la contrasena lo hace UsuarioDao: aqui nunca se guarda en claro.
-        Usuario usuario = new Usuario(nombre, correo, "local", null);
-        if (usuarioDao.registrar(usuario, password) > 0) {
+        if (resultado.esExitoso()) {
             avisar(getString(R.string.msg_registro_ok));
             finish();
         } else {
-            avisar(getString(R.string.msg_error_registro));
+            avisar(resultado.getMensaje());
         }
     }
 

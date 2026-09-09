@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apptareas.R;
+import com.example.apptareas.auth.SesionManager;
 import com.example.apptareas.data.TareaContract;
 import com.example.apptareas.data.TareaDao;
 import com.example.apptareas.model.Tarea;
@@ -24,6 +25,7 @@ public class FormTareaActivity extends AppCompatActivity {
     public static final String EXTRA_TAREA_ID = "extra_tarea_id";
 
     private TareaDao tareaDao;
+    private SesionManager sesionManager;
 
     private EditText etTitulo;
     private EditText etDescripcion;
@@ -41,6 +43,7 @@ public class FormTareaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form_tarea);
 
         tareaDao = new TareaDao(this);
+        sesionManager = new SesionManager(this);
 
         etTitulo = findViewById(R.id.etTitulo);
         etDescripcion = findViewById(R.id.etDescripcion);
@@ -143,7 +146,7 @@ public class FormTareaActivity extends AppCompatActivity {
         tarea.setEstado(estadoSeleccionado());
         tarea.setFechaVencimiento(vencimientoIso.isEmpty() ? null : vencimientoIso);
         tarea.setUsuarioAsignado(asignado.isEmpty() ? null : asignado);
-        tarea.setUsuarioId(SesionTemporal.usuarioId(this));
+        tarea.setUsuarioId(sesionManager.usuarioIdActivo());
 
         boolean ok;
         if (tareaId > 0) {

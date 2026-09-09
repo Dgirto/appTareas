@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apptareas.R;
+import com.example.apptareas.auth.AuthManager;
+import com.example.apptareas.auth.SesionManager;
 import com.example.apptareas.data.TareaContract;
 import com.example.apptareas.data.TareaDao;
 import com.example.apptareas.model.Tarea;
@@ -29,6 +31,8 @@ public class ListaTareasActivity extends AppCompatActivity
         implements TareaAdapter.OnTareaClickListener {
 
     private TareaDao tareaDao;
+    private SesionManager sesionManager;
+    private AuthManager authManager;
     private TareaAdapter adapter;
 
     private RecyclerView rvTareas;
@@ -45,6 +49,8 @@ public class ListaTareasActivity extends AppCompatActivity
         setContentView(R.layout.activity_lista_tareas);
 
         tareaDao = new TareaDao(this);
+        sesionManager = new SesionManager(this);
+        authManager = new AuthManager(this);
 
         rvTareas = findViewById(R.id.rvTareas);
         tvVacio = findViewById(R.id.tvVacio);
@@ -105,7 +111,7 @@ public class ListaTareasActivity extends AppCompatActivity
     }
 
     private void cargarTareas() {
-        long usuarioId = SesionTemporal.usuarioId(this);
+        long usuarioId = sesionManager.usuarioIdActivo();
         String busqueda = etBuscar.getText().toString().trim();
 
         List<Tarea> resultado;
@@ -146,7 +152,7 @@ public class ListaTareasActivity extends AppCompatActivity
     }
 
     private void cerrarSesion() {
-        SesionTemporal.limpiar(this);
+        authManager.cerrarSesion();
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
