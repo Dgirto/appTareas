@@ -19,3 +19,9 @@ local.properties
 
 # Worktrees y estado local de Claude Code
 .claude/
+
+# Credenciales de Firebase y keystores: NUNCA al repositorio (plan, sección 7.4)
+google-services.json
+app/google-services.json
+*.jks
+*.keystore
